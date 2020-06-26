@@ -48,19 +48,19 @@ For a rundown of the rules of Farkle please head to [this link](https://www.dice
 
 ## 💭 How it works <a name = "working"></a>
 
-For the time being, until the bot is ported over to Typescript where classes are supported, the bot  only allows for one game to go on. This game could in threory span across multiple servers, however the responce to the issued command is only sent to the specific channel that the command was issued from so players would only see half a game.
+For the time being, until the bot is ported over to Typescript where classes are supported, the bot  only allows for one game to go on. This game could in theory span across multiple servers, however the response to the issued command is only sent to the specific channel that the command was issued from so players would only see half a game.
 
 The bot cleans up any command that the player issues by using the message.delete() function of the discord api, any errors are caught to the console.
 
-When players join their ID and name is added to a small class which also contains their score, this is added to an array which it itterated over in order to get the game order. 
+When players join their ID and name is added to a small class which also contains their score, this is added to an array which it iterated over in order to get the game order. 
 
-When the game is started the gamePlaying bool is set to true, this is used to enable the use of the gameplay commands and dissable the use of the join and start commands.
+When the game is started the gamePlaying bool is set to true, this is used to enable the use of the gameplay commands and disable the use of the join and start commands.
 
-Rolling uses the Math library to get a random number between zero and one, then it times it by six and rounds it downward to the nearest integer. Then by adding one to this it gives a random number between one and six. These numbers are pushed to an array of rolls which is then bubblesorted. The numbers are formatted into an output and sent to the channel.
+Rolling uses the Math library to get a random number between zero and one, then times it by six and rounds it downward to the nearest integer. Then by adding one to this it gives a random number between one and six. These numbers are pushed to an array of rolls which is then bubblesorted. The numbers are formatted into an output and sent to the channel.
 
-The keep function seperates out the arguments of which dice to save, then calculates the score for them and rolls a new set of dice where the size is based on the number of dice kept. If the keep command is sent with the argument all the score is calculated and the endTurn function is executed.
+The keep function separates out the arguments of which dice to save, then calculates the score for them and rolls a new set of dice where the size is based on the number of dice kept. If the keep command is sent with the argument all the score is calculated and the endTurn function is executed.
 
-The score is calcluated through a for loop with itterates through the number of dice and a series of nested IF statements which keep track of the amount of ones and fives; as well as pairs, tripplets and if a quartet exists. 
+The score is calculated through a for loop with iterates through the number of dice and a series of nested IF statements which keep track of the number of ones and fives; as well as pairs, triplets and if a quartet exists.
 
 The entire bot is written in Javascript.
 
@@ -100,7 +100,7 @@ To roll your dice type:
 -roll
 ```
 
-This will roll six dice and tell you their scores, they are given in accending order to make it easier to spot scoring groups.
+This will roll six dice and tell you their scores, they are given in ascending order to make it easier to spot scoring groups.
 
 ### Example:
 
@@ -124,7 +124,7 @@ To keep dice type:
 -keep 
 ```
 
-This will allow you to keep any number of dice by listing the dice number seperated by a space.
+This will allow you to keep any number of dice by listing the dice number separated by a space.
 
 ### Example:
 
@@ -143,7 +143,7 @@ Dice number 5 rolled 4
 Dice number 6 rolled 6
 ```
 
-Dice number three, four and five will be kept, the remaining three dice will the be rolled and their numbers output
+Dice number three, four and five will be kept, the remaining three dice will then be rolled and their numbers output
 
 ```
 Ryan is rolling:
@@ -245,9 +245,17 @@ Go to [Discord's bot portal](https://discordapp.com/developers/applications/), a
 
 To add the bot to your server, navigate to the OAuth2 page in the discord developer portal and select the bot checkbox in the scopes tab. 
 
-After that you can choose which permisions to give the bot, the bot currently requires the Send Messages, Manage Messages and Embed Links permissions.
+After that you can choose which permissions to give the bot, the bot currently requires the Send Messages, Manage Messages and Embed Links permissions.
 
-Finally you can copy the url that has apeard at the bottom of the scopes tab. When you go to this link it will give you the option to add the bot to any server that you are an admin of.
+You can then copy the url that has appeared at the bottom of the scopes tab. When you go to this link it will give you the option to add the bot to any server that you are an admin of.
+
+Once you have done this go to your file folder and create a new file called token.json. In the file add the following lines (substituting TokenHere for your token which can be found on the bot page of your developer portal):
+
+```
+{
+    "token": "TokenHere"
+}
+```
 
 #### Running the bot
 
