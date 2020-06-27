@@ -33,6 +33,7 @@ client.on("message", async message => {
         return;
     }
     if (!message.content.startsWith(prefix)) return;
+    message.content = message.content.toLowerCase();
     if (message.content.startsWith(`${prefix}help`)) {
         Help(message);
     }
@@ -139,6 +140,9 @@ function Roll(message, amount) {
     }
     returnMessage += "```";
     message.channel.send(returnMessage);
+    if (CalculateScore(rolls) == 0) {
+        EndTurn(message);
+    }
 }
 
 function Keep(message) {
@@ -157,6 +161,12 @@ function Keep(message) {
         }
         EndTurn(message);
     } else {
+        var keepMessage = `${playerList[playerTurn].name} has kept dice `
+        for (i = 1; i < args.length; i++) {
+            keepMessage += args[i] + " ";
+        }
+        keepMessage += ".";
+        message.channel.send(keepMessage);
         var rollSet = new Array();
         console.log(args);
         for (i = args.length; i > 1; i--) {

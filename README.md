@@ -169,9 +169,10 @@ Dice number 5 rolled 4
 Dice number 6 rolled 6
 ```
 
-Dice number three, four and five will be kept, the remaining three dice will then be rolled and their numbers output
+Dice number three, four and five will be kept, the remaining three dice will then be rolled and their numbers output.
 
 ```
+Ryan has kept dice 3 4 5.
 Ryan is rolling:
 Dice number 1 rolled 2
 Dice number 2 rolled 5
