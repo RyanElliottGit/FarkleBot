@@ -9,6 +9,9 @@ var playerTurn = 0;
 var gamePlaying = false;
 var rolls = new Array();
 var tempScore = 0;
+var gameEndScore = 10000;
+var endGame = false;
+var topPlayer;
 
 class Player {
     constructor(id, name) {
@@ -108,7 +111,17 @@ function Join(message) {
 
 //possibly just automate with links to click instead of using commands to call rolls
 function Start(message) {
+    const args = message.content.split(" ");
+    if (args.length > 1) {
+        //needs validation
+        gameEndScore = args[1];
+    }
+    var playerListMessage = `The game has been started, the game end score is ${gameEndScore} and the players who have joined are: \n`
     gamePlaying = true;
+    for (i = 0; i < playerList.length; i++) {
+        playerListMessage = playerListMessage.concat(playerList[i].name + "\n");
+    }
+    message.channel.send(playerListMessage);
     message.channel.send(playerList[playerTurn].name + " use -roll to start!");
 }
 
@@ -134,6 +147,13 @@ function Keep(message) {
         var score = CalculateScore(rolls);
         if (score > 0) {
             playerList[playerTurn].score += score + tempScore;
+            if (endGame && playerList[playerTurn].score > topPlayer.score) {
+                topPlayer = playerList[playerTurn];
+            } else if (playerList[playerTurn].score >= gameEndScore) {
+                message.channel.send(playerList[playerTurn].name + " has reached the endgame, the remaining people only have one turn to beat them.")
+                endGame = true;
+                topPlayer = playerList[playerTurn];
+            }
         }
         EndTurn(message);
     } else {
@@ -158,7 +178,12 @@ function EndTurn(message) {
     playerTurn++;
     tempScore = 0;
     if (playerTurn >= playerList.length) {
-        playerTurn = 0;
+        if (endGame) {
+            message.channel.send("The game is over, the winner is: " + topPlayer.name + " congratulations!");
+            return;
+        } else {
+            playerTurn = 0;
+        }
     }
     message.channel.send(playerList[playerTurn].name + " is next to play.");
 }
@@ -169,6 +194,14 @@ function Score(message) {
             return message.channel.send(playerList[i].name + " your score is: " + playerList[i].score);
         }
     }
+}
+
+function getScoreArray() {
+    var playerScores = new Array();
+    for (i = 0; i < playerList.length; i++) {
+        playerScores.push(playerList[i].score);
+    }
+    return playerScores;
 }
 
 function CalculateScore(rollSet) {

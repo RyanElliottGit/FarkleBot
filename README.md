@@ -52,11 +52,11 @@ The bot cleans up any command that the player issues by using the message.delete
 
 When players join their ID and name is added to a small class which also contains their score, this is added to an array which it iterated over in order to get the game order. 
 
-When the game is started the gamePlaying bool is set to true, this is used to enable the use of the gameplay commands and disable the use of the join and start commands.
+When the game is started the gamePlaying bool is set to true, this is used to enable the use of the gameplay commands and disable the use of the join and start commands. If the game is started with a number as a variable it sets the game end score to that.
 
 Rolling uses the Math library to get a random number between zero and one, then times it by six and rounds it downward to the nearest integer. Then by adding one to this it gives a random number between one and six. These numbers are pushed to an array of rolls which is then bubblesorted. The numbers are formatted into an output and sent to the channel.
 
-The keep function separates out the arguments of which dice to save, then calculates the score for them and rolls a new set of dice where the size is based on the number of dice kept. If the keep command is sent with the argument all the score is calculated and the endTurn function is executed.
+The keep function separates out the arguments of which dice to save, then calculates the score for them and rolls a new set of dice where the size is based on the number of dice kept. If the keep command is sent with the argument all the score is calculated and the endTurn function is executed. This checks to see if the player has got a winning score and then moves it to the next player, or ends the game as necessary.
 
 The score is calculated through a for loop with iterates through the number of dice and a series of nested IF statements which keep track of the number of ones and fives; as well as pairs, triplets and if a quartet exists.
 
@@ -88,7 +88,35 @@ To start the game type:
 -start
 ```
 
-This starts the game and outputs the name of the first player to roll.
+This starts the game, outputs the players who have joined and outputs the name of the first player to roll.
+
+### Example:
+
+> -start
+
+**Example:**
+
+```
+The game has been started, the players who have joined are: 
+Ryan
+Dylan
+Ryan use -roll to start!
+```
+
+Alternatively, you can start the game with an end game score specified as a argument.
+
+### Example:
+
+> -start 5000
+
+**Example:**
+
+```
+The game has been started, the game end score is 5000 and the players who have joined are:
+Ryan
+Dylan
+Ryan use -roll to start!
+```
 
 ---
 
