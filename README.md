@@ -25,12 +25,10 @@
 
 ## 📝 Table of Contents
 
-- [About](#about)
-<!-- - [Demo / Working](#demo) -->
+- [About](#about)<!-- - [Demo / Working](#demo) -->
 - [How it works](#working)
 - [Usage](#usage)
-- [Getting Started](#getting_started)
-<!-- - [Deploying your own bot](#deployment) -->
+- [Getting Started](#getting_started)<!-- - [Deploying your own bot](#deployment) -->
 - [Built Using](#built_using)
 - [TODO](../FarkleBot/TODO.md)
 - [Authors](#authors)
@@ -265,9 +263,9 @@ To run the bot simply navigate to the file folder in the terminal use the follow
 $ node server.js
 ```
 
-<!-- ## 🚀 Deploying your own bot <a name = "deployment"></a>
+## 🚀 Deploying your own bot <a name = "deployment"></a>
 
-For easy deployment please use the Docker project located here. To use this ... -->
+For easy deployment please use the Docker project that I have created [located here.](https://hub.docker.com/repository/docker/ryanelliotthub/farkle_bot) The page has a detailed readme.md that covers deployment. This should work on x86/x64 architectures and will always use the current version of this project. 
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
