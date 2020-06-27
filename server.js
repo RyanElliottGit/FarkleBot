@@ -44,13 +44,13 @@ client.on("message", async message => {
             if (message.author.id == playerList[playerTurn].id) {
                 Roll(message, 6);
             } else {
-                message.channel.send("It is " + playerList[playerTurn].name + "'s turn to play.");
+                message.channel.send(`It is ${playerList[playerTurn].name}'s turn to play.`);
             }
         } else if (message.content.startsWith(`${prefix}keep`)) {
             if (message.author.id == playerList[playerTurn].id) {
                 Keep(message);
             } else {
-                message.channel.send("It is " + playerList[playerTurn].name + "'s turn to play.");
+                message.channel.send(`It is ${playerList[playerTurn].name}'s turn to play.`);
             }
         } else if (message.content.startsWith(`${prefix}score`)) {
             Score(message);
@@ -101,12 +101,12 @@ function Clear(message) {
 function Join(message) {
     for (i = 0; i < playerList.length; i++) {
         if (playerList[i].id == message.author.id) {
-            return message.channel.send(playerList[i].name + " you have already joined!");
+            return message.channel.send(`${playerList[i].name} you have already joined!`);
         }
     }
     const player = new Player(message.author.id, message.author.username);
     playerList.push(player);
-    message.channel.send(player.name + " has joined the game!")
+    message.channel.send(`${player.name} has joined the game!`)
 }
 
 //possibly just automate with links to click instead of using commands to call rolls
@@ -122,7 +122,7 @@ function Start(message) {
         playerListMessage = playerListMessage.concat(playerList[i].name + "\n");
     }
     message.channel.send(playerListMessage);
-    message.channel.send(playerList[playerTurn].name + " use -roll to start!");
+    message.channel.send(`${playerList[playerTurn].name} use -roll to start!`);
 }
 
 function Roll(message, amount) {
@@ -150,7 +150,7 @@ function Keep(message) {
             if (endGame && playerList[playerTurn].score > topPlayer.score) {
                 topPlayer = playerList[playerTurn];
             } else if (playerList[playerTurn].score >= gameEndScore) {
-                message.channel.send(playerList[playerTurn].name + " has reached the endgame, the remaining people only have one turn to beat them.")
+                message.channel.send(`${playerList[playerTurn].name} has reached the endgame, the remaining people only have one turn to beat them.`)
                 endGame = true;
                 topPlayer = playerList[playerTurn];
             }
@@ -174,24 +174,24 @@ function Keep(message) {
 }
 
 function EndTurn(message) {
-    message.channel.send(playerList[playerTurn].name + " your score is: " + playerList[playerTurn].score + ". ");
+    message.channel.send(`${playerList[playerTurn].name} your score is: ${playerList[playerTurn].score}. `);
     playerTurn++;
     tempScore = 0;
     if (playerTurn >= playerList.length) {
         if (endGame) {
-            message.channel.send("The game is over, the winner is: " + topPlayer.name + " congratulations!");
+            message.channel.send(`The game is over, the winner is: ${topPlayer.name} congratulations!`);
             return;
         } else {
             playerTurn = 0;
         }
     }
-    message.channel.send(playerList[playerTurn].name + " is next to play.");
+    message.channel.send(`${playerList[playerTurn].name} is next to play.`);
 }
 
 function Score(message) {
     for (i = 0; i < playerList.length; i++) {
         if (playerList[i].id == message.author.id) {
-            return message.channel.send(playerList[i].name + " your score is: " + playerList[i].score);
+            return message.channel.send(`${playerList[i].name} your score is: ${playerList[i].score}`);
         }
     }
 }
