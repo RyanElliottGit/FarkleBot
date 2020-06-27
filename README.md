@@ -13,7 +13,7 @@
 -->
 [![GitHub Issues](https://img.shields.io/github/issues/RyanElliottGit/FarkleBot.svg)](https://github.com/RyanElliottGit/FarkleBot/issues)
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/RyanElliottGit/FarkleBot.svg)](https://github.com/RyanElliottGit/FarkleBot/pulls)
-[![License](https://img.shields.io/github/license/RyanElliottGit/FarkleBot.svg)](/LICENSE)
+[![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](/LICENSE)
 
 </div>
 
