@@ -241,6 +241,20 @@ The game has been ended by a higher power.
 
 ---
 
+To clear a number of the bots commands from the server you can use the following command, however you will have to add your ID to to the code:
+
+```
+-clear
+```
+
+### Example:
+
+> -clear 10
+
+This will clear the last 10 messages the bot sent.
+
+---
+
 <sup>Beep boop. I am a bot. If there are any issues, contact my [Master](mailto:ryanelliott98@hotmail.com)</sup>
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
